@@ -1,5 +1,9 @@
 #include "Grafo.h"
 
+Grafo::Grafo(){
+
+}
+
 void Grafo::insertarVertice(std::string nom){
         nodoVertice* tmp = new nodoVertice(nom, nullptr, nullptr);
         nodoVertice* aux = hGrafo;
@@ -10,7 +14,6 @@ void Grafo::insertarVertice(std::string nom){
         }else{
                 while(aux->sigVer != nullptr)
                         aux = aux->sigVer;
-
                 aux->sigVer = tmp;
         }
 }
@@ -57,7 +60,7 @@ void Grafo::insertarArista(std::string origen, std::string destino, int costo){
 
 nodoVertice* Grafo::buscarVertice(std::string destino){
         nodoVertice* aux = hGrafo;
-        bool band = true
+        bool band = true;
 
         if(aux){
                 while(aux and band){
@@ -71,7 +74,24 @@ nodoVertice* Grafo::buscarVertice(std::string destino){
 }
 
 void Grafo::mostrarGrafo(){
+        nodoVertice* auxVertice = hGrafo;
+        // Cada paso de vértice se tiene que inicializar en null
+        nodoArista* auxArista = nullptr;
 
+        while(auxVertice){
+                std::cout << "Vértice: " << auxVertice->nombre
+                        << ": ";
+                auxArista = auxVertice->hArista;
+                while(auxArista){
+                        std::cout << '('
+                                << auxArista->destino
+                                << ", "
+                                << auxArista->costo << "), ";
+                        auxArista = auxArista->sigArista;
+                }
+                std::cout << std::endl;
+                auxVertice = auxVertice->sigVer;
+        }
 }
 
 void Grafo::eliminarVertice(std::string){
@@ -79,4 +99,13 @@ void Grafo::eliminarVertice(std::string){
 
 void Grafo::eliminarArista(std::string, std::string){
 
+}
+
+void Grafo::mostrarVertices(){
+        nodoVertice* aux = hGrafo;
+        while(aux){
+                std::cout << aux->nombre << std::endl;
+                std::cout << aux->sigVer << std::endl;
+                aux = aux->sigVer;
+        }
 }

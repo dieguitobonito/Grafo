@@ -22,7 +22,7 @@ class nodoVertice{
                 // Constructores
                 nodoVertice(){
                         nombre = "";
-                        sigVertice = nullptr;
+                        sigVer = nullptr;
                         hArista = nullptr;
                 }
 
